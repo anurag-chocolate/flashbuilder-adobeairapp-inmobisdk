@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" applicationDPI="160" creationComplete="init();">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+		
+			import com.inmobi.plugin.adobeair.InMobi;
+			import com.inmobi.plugin.adobeair.InmobiConstants;
+			
+			
+			var inmobi:InMobi = InMobi.getInstance();
+			
+			var optionalInMobiParams:Object={
+				    "gender": "Male",
+					"education":"school",
+					"ethnicity": "european", 
+					"language": "eng",
+					"postalCode": "11111",
+					"areaCode": "435",
+					"interests": "swimming, adventure sports"
+				
+			};
+			
+			var placementid:String="1524065360727";
+			var interstitialid:String="interstitialid";
+			var optionalparams:Object={
+				"keywords":"inmobi,adobeair,admob",
+				"additionalParams":"name:Inmobi",
+				"disableHardwareAcceleration":"TRUE"
+			};
+			
+			
+			protected function load_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				inmobi.loadInterstitial(placementid, interstitialid, optionalparams);
+				
+				
+				
+			}
+			private function init():void
+			{
+				inmobi.initialize("3112089ba2964321af0b5b11909506b3", optionalInMobiParams);
+				inmobi.setLogLevel(InmobiConstants.LOGLEVEL_DEBUG);
+			}
+			
+			
+			protected function show_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				
+				inmobi.showInterstitial(interstitialid)
+				
+				
+			}
+			
+			
+			
+			
+		]]>
+	</fx:Script>
+	
+	<s:Button id="load" label="load" width="60" height="100" bottom="120" left="20" click="load_clickHandler(event)"/>
+	<s:Button id="show" label="show" width="60" height="100" bottom="120" left="120" click="show_clickHandler(event)"/>
+</s:Application>
